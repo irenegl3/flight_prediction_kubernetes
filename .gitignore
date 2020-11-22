@@ -17,7 +17,7 @@ tmp
 kafka
 zeppelin
 ch05/scrape_faa.py
-models
+# models
 .vagrant
 *.pem
 .reservation_id
