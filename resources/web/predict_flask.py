@@ -12,7 +12,9 @@ import predict_utils
 # Set up Flask, Mongo and Elasticsearch
 app = Flask(__name__)
 
-client = MongoClient()
+MONGO_HOST=os.getenv('MONGO_HOST')
+MONGO_PORT=int(os.getenv('MONGO_PORT'))
+client = MongoClient(MONGO_HOST, MONGO_PORT)
 
 from pyelasticsearch import ElasticSearch
 elastic = ElasticSearch(config.ELASTIC_URL)
@@ -292,7 +294,7 @@ def delays():
   return render_template('delays.html')
 
 # Load our regression model
-from sklearn.externals import joblib
+import joblib
 from os import environ
 
 
