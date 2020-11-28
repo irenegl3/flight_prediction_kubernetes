@@ -1,3 +1,5 @@
 #!/bin/bash
 
-./resources/import_distances.sh
+mongod &
+./../resources/import_distances.sh &
+sleep 1234567
