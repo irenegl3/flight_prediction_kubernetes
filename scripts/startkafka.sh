@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python3 ../scripts/update-kafka.py &
-sleep 5
+sleep 15
 ./bin/kafka-server-start.sh config/server.properties &
 sleep 15 &
 ./bin/kafka-topics.sh \
@@ -9,4 +9,5 @@ sleep 15 &
     --zookeeper 10.31.242.67:30181 \
     --replication-factor 1 \
     --partitions 1 \
-    --topic flight_delay_classification_request 
+    --topic flight_delay_classification_request &
+sleep 123456789
