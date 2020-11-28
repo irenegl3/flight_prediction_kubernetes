@@ -6,7 +6,7 @@ sleep 15
 sleep 15 &
 ./bin/kafka-topics.sh \
     --create \
-    --zookeeper 10.31.242.67:30181 \
+    --zookeeper 10.31.242.67:2181 \
     --replication-factor 1 \
     --partitions 1 \
     --topic flight_delay_classification_request &
