@@ -1,0 +1,118 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: server
+  labels:
+    deploy: server
+spec:
+  # A deployment's specification really only
+  # has a few useful options
+
+  # 1. How many copies of each pod do we want?
+  replicas: 1
+  # 2. Which pods are managed by this deployment?
+  selector:
+    # This must match the labels we set on the pod!
+    matchLabels:
+      deploy: server
+  # This template field is a regular pod configuration
+  # nested inside the deployment spec
+  template:
+    metadata:
+      # Set labels on the pod.
+      # This is used in the deployment selector.
+      labels:
+        deploy: server
+    spec:
+      containers:
+        - name: flask
+          image: gcr.io/local-288807/server:v7
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: configmap-bigdata
+---
+  kind: Deployment
+  apiVersion: apps/v1
+  metadata:
+    name: mongo
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deploy: mongo
+    template:
+      metadata:
+        labels:
+          deploy: mongo
+      spec:
+        containers:
+          - name: bd
+            image: gcr.io/local-288807/mongo:v6
+            ports:
+              - containerPort: 27017
+---
+  kind: Deployment
+  apiVersion: apps/v1
+  metadata:
+    name: spark
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deploy: spark
+    template:
+      metadata:
+        labels:
+          deploy: spark
+      spec:
+        containers:
+          - name: spark
+            image: gcr.io/local-288807/spark:v5
+            envFrom:
+              - configMapRef:
+                  name: configmap-bigdata
+---
+  kind: Deployment
+  apiVersion: apps/v1
+  metadata:
+    name: kafka
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deploy: kafka
+    template:
+      metadata:
+        labels:
+          deploy: kafka
+      spec:
+        containers:
+          - name: kafka
+            image: gcr.io/local-288807/kafka:v6
+            envFrom:
+              - configMapRef:
+                  name: configmap-bigdata
+            ports:
+              - containerPort: 9092
+---
+  kind: Deployment
+  apiVersion: apps/v1
+  metadata:
+    name: zookeper
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deploy: zookeper
+    template:
+      metadata:
+        labels:
+          deploy: zookeper
+      spec:
+        containers:
+          - name: zookeper
+            image: gcr.io/local-288807/zookeper:v3
+            ports:
+              - containerPort: 2181

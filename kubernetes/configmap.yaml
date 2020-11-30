@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+        name: configmap-bigdata
+data:
+        PROJECT_HOME: /
+        MONGO_HOST: "10.31.254.118" # A cambiar por la direccion correspondiente
+        MONGO_PORT: "27017"
+        ZOOKEPER_HOST: "10.31.242.67" # A cambiar por la direccion correspondiente
+        ZOOKEPER_PORT: "2181"
+        SPARK_HOME: /main/spark-2.4.4-bin-hadoop2.7
+        KAFKA_HOST: "10.31.248.138" # A cambiar por la direccion correspondiente
+        KAFKA_PORT: "9092"
