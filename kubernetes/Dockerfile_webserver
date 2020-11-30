@@ -1,0 +1,15 @@
+FROM python:3.7
+WORKDIR /main
+
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	apt install -y nano
+
+RUN apt-get install git -y && \
+	git clone https://github.com/irenegl3/practica_big_data_2020 && \
+	mv practica_big_data_2020/* . && \
+	rm -r practica_big_data_2020
+RUN pip3 install -r requirements.txt
+
+WORKDIR /main/resources/web
+CMD ["python3", "predict_flask.py"]
