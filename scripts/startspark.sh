@@ -2,6 +2,13 @@
 
 python3 resources/train_spark_mllib_model.py . 
 
+# crear jar
+cd flight_prediction
+sbt clean
+sbt compile
+sbt package
+cd ..
+
 # ejecutar master y worker de spark para prediccion
 ./spark-2.4.4-bin-hadoop2.7/bin/spark-submit \
   --class es.upm.dit.ging.predictor.MakePrediction \
