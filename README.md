@@ -41,9 +41,18 @@ En este proyecto se han realizado las siguientes implementaciones a parte del fu
 * El despliegue de servicios con docker-compose se ha realizado también (1 puntos) y para poder ejecutarlo se debe ir al siguiente repositorio: https://github.com/irenegl3/practica_big_data_2020-v2
 
 ## Instrucciones de despliegue
-1. Crear un proyecto en Google Cloud
-2. Meterse en el terminal
-
+1. Acceder al proyecto local-288807 de Google Cloud
+2. Abrir la terminal
+3. Copiar los siguientes ficheros dentro de tu repositorio local de gcloud:
+    - despliegue.sh
+    - deployment.yaml
+    - configmap.yaml
+4. Dar permisos de ejecución al fichero de despliegue:
+`chmod +x despliegue.sh`
+5. Ejecutar el fichero del despliegue del escenario:
+`./despliegue.sh`
+6. Esperar 10-12 minutos hasta que se entrene el modelo
+7. Probar el funcionamiento en: *34.89.103.210:30500/flights/delays/predict_kafka*
 
 ## Autores
 - Ignacio Arregui
