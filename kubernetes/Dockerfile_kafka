@@ -23,7 +23,7 @@ RUN apt-get install git -y && \
 	mv practica_big_data_2020/* . && \
 	rm -r practica_big_data_2020
 
-RUN chmod +x scripts/startkafkaserver.sh
+RUN chmod +x scripts/startkafka.sh
 
 WORKDIR /main/kafka_2.12-2.3.0
-CMD ./../scripts/startkafkaserver.sh
+CMD ./../scripts/startkafka.sh
